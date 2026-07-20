@@ -1,34 +1,46 @@
-# Careon — AI Career Assistant (FastAPI + React)
+# Careon — From Resume to Offer
 
-Careon is a full-stack AI career assistant — resume ATS scoring, resume
-analysis, career path recommendation, learning roadmaps, job description
-matching, AI-generated interview questions, and mock interviews with AI
-evaluation. Originally prototyped in Streamlit; this is the full-stack
-rebuild. The AI/business logic (`services/`, `ai_engine/`, `database/`,
-`utils/`) is untouched from the original prototype — only the UI layer
-changed, from Streamlit to a proper REST API (FastAPI) + SPA (React).
+Careon is a full-stack AI-powered career platform that guides job seekers through every step of the hiring process. It scores resumes against ATS systems, recommends career paths, builds learning roadmaps, matches resumes against job descriptions, generates interview questions, runs AI-evaluated mock interviews, and rolls everything up into a final report and dashboard.
+
+Built as a **FastAPI** backend with a **React (Vite)** frontend.
 
 ```
 careon/
-├── backend/     FastAPI JSON API — all the AI/business logic lives here
-└── frontend/    React (Vite) single-page app that talks to the API
+├── backend/     FastAPI REST API — resume parsing, ATS scoring, AI engine, MongoDB persistence
+└── frontend/    React (Vite) SPA that consumes the API
 ```
 
-## Why this structure
+## Features
 
-- **Backend logic is 1:1 reused.** Everything under `backend/services/`,
-  `backend/ai_engine/`, `backend/database/`, `backend/utils/` is copied
-  straight from the original project with zero changes to the algorithms —
-  ATS scoring, resume analysis, career recommendation, roadmap generation,
-  job matching, question generation, and answer evaluation all work exactly
-  as before, including the offline fallback when no OpenAI key is set.
-- **Session state** — Streamlit's `st.session_state` is replaced by
-  `backend/session_store.py`, an in-memory per-session store keyed by an
-  `X-Session-Id` header the frontend generates once and reuses. Final
-  results are still written through to MongoDB, same as before, and Mongo
-  is fully optional — if it can't connect, the app degrades gracefully.
+- **Resume Upload & Parsing** — accepts PDF/DOCX resumes
+- **ATS Checker** — scores a resume against a target role
+- **Resume Analysis** — strengths, weaknesses, top skills, AI summary
+- **Skill Gap Analyzer** — compares resume skills to role requirements
+- **Career Recommendation** — suggests best-fit career paths with match %
+- **Learning Roadmap** — week-by-week plan to close skill gaps
+- **Job Match Analyzer** — compares a resume against a pasted job description
+- **Question Generator** — generic or resume-personalized interview questions
+- **Mock Interview** — timed, question-by-question flow with AI evaluation
+- **Final Report** — score breakdown, accuracy, and summary
+- **Career Dashboard** — overall readiness score
 
-## 1. Backend setup
+All AI features have an offline fallback (rule-based scoring/generation) when no OpenAI API key is configured.
+
+## Tech Stack
+
+**Backend:** FastAPI, Uvicorn, MongoDB (PyMongo, optional), OpenAI API (optional), pdfplumber, python-docx
+
+**Frontend:** React 19, Vite, React Router, plain CSS
+
+## Getting Started
+
+### Prerequisites
+- Python 3.10+
+- Node.js 18+
+- MongoDB (optional)
+- OpenAI API key (optional)
+
+### Backend
 
 ```bash
 cd backend
@@ -37,61 +49,60 @@ source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 cp .env.example .env
-# then edit .env and fill in:
-#   MONGO_URI        (optional — leave blank to run without persistence)
-#   OPENAI_API_KEY    (optional — leave blank to use built-in offline scoring)
+# Fill in MONGO_URI / OPENAI_API_KEY (both optional)
 
 uvicorn main:app --reload --port 8000
 ```
 
-The API is now running at `http://localhost:8000`. Interactive docs are
-available at `http://localhost:8000/docs`.
+API runs at `http://localhost:8000`, docs at `http://localhost:8000/docs`.
 
-## 2. Frontend setup
-
-In a second terminal:
+### Frontend
 
 ```bash
 cd frontend
 npm install
 
 cp .env.example .env
-# VITE_API_URL should point at your backend, default http://localhost:8000
+# VITE_API_URL should point at your backend (default http://localhost:8000)
 
 npm run dev
 ```
 
 Open the printed local URL (typically `http://localhost:5173`).
 
-## 3. Production build
+### Production build
 
 ```bash
 cd frontend
 npm run build       # outputs static files to frontend/dist
 ```
 
-Serve `frontend/dist` with any static host (Netlify, Vercel, nginx, or
-`uvicorn` via a StaticFiles mount), and deploy `backend/` separately (e.g.
-Render, Railway, Fly.io, or a VM behind gunicorn/uvicorn workers). Set
-`VITE_API_URL` to your deployed backend URL before building.
+Serve `frontend/dist` with any static host, and deploy `backend/` separately (e.g. Render, Railway, Fly.io).
 
-## What's preserved from the original app
+## Project Structure
 
-- ATS Checker, Resume Analysis (+ skill gap), Career Recommendation,
-  Learning Roadmap, Job Match Analyzer, Question Generator (generic +
-  personalized), Mock Interview with per-question timer and AI evaluation,
-  Final Report, and Career Dashboard — all 10 pages, same flow.
-- Same visual identity (warm cream/terracotta palette, cards, badges,
-  progress rings) reimplemented in plain CSS instead of Streamlit's theme.
-- Same MongoDB collections and schema (`database/*_collection.py`).
-- Same offline fallback behavior when OpenAI is unavailable.
+```
+backend/
+├── main.py           # FastAPI app & routes
+├── session_store.py  # Per-session state
+├── ai_engine/         # LLM client & prompts
+├── config/            # Settings, roles, LLM config
+├── database/           # MongoDB collections
+├── services/            # Core business logic
+├── utils/                # Helpers, logging, file handling
+└── tests/                 # Unit tests
 
-## What's different
+frontend/
+└── src/
+    ├── pages/           # One page per feature
+    ├── components/       # Sidebar, progress rings, shared UI
+    ├── context/            # Global app state
+    └── api.js               # API client
+```
 
-- Multi-step flows (resume upload → mock interview → report) are now
-  driven by explicit API calls instead of Streamlit reruns, so the app
-  feels instant and doesn't reload state on every interaction.
-- The interview timer, waveform animation, and progress rings are live
-  React/CSS instead of Streamlit widgets.
-- One backend can now serve multiple frontends (web, and later mobile or
-  a browser extension) since it's a clean JSON API.
+## Testing
+
+```bash
+cd backend
+pytest
+```
