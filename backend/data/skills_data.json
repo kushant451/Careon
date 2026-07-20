@@ -1,0 +1,7 @@
+{
+  "Software Engineer": ["Python","Java","C++","Data Structures","Algorithms","Git","SQL","REST API","Object Oriented Programming","Docker","Kubernetes","AWS","CI/CD","System Design","Unit Testing","Agile"],
+  "Data Analyst": ["SQL","Python","Excel","Power BI","Tableau","Data Visualization","Statistics","Pandas","NumPy","Machine Learning","A/B Testing","ETL","Data Cleaning","R"],
+  "Frontend Developer": ["HTML","CSS","JavaScript","React","Redux","TypeScript","Responsive Design","Webpack","REST API","Git","UI/UX","Tailwind CSS","Next.js","Testing"],
+  "Backend Developer": ["Node.js","Python","Java","REST API","SQL","NoSQL","MongoDB","Docker","Microservices","Authentication","System Design","Caching","Redis","Kubernetes"],
+  "Full Stack Developer": ["JavaScript","React","Node.js","SQL","MongoDB","REST API","Git","HTML","CSS","System Design","Docker","AWS","Testing","Agile"]
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "software_engineer",
+    "title": "Software Engineer",
+    "description": "Builds and maintains software systems end-to-end, covering coding, testing, and system design.",
+    "core_skills": ["Python", "Java", "Data Structures", "Algorithms", "Git", "SQL", "REST API", "System Design"],
+    "growth_outlook": "High",
+    "salary_range": "Varies by experience and location"
+  },
+  {
+    "id": "backend_developer",
+    "title": "Backend Developer",
+    "description": "Designs server-side logic, APIs, and databases that power applications.",
+    "core_skills": ["Node.js", "Python", "Java", "REST API", "SQL", "NoSQL", "MongoDB", "Microservices", "System Design"],
+    "growth_outlook": "High",
+    "salary_range": "Varies by experience and location"
+  },
+  {
+    "id": "frontend_developer",
+    "title": "Frontend Developer",
+    "description": "Creates user-facing interfaces with a focus on usability, performance, and visual design.",
+    "core_skills": ["HTML", "CSS", "JavaScript", "React", "Redux", "TypeScript", "Responsive Design", "UI/UX"],
+    "growth_outlook": "High",
+    "salary_range": "Varies by experience and location"
+  },
+  {
+    "id": "full_stack_developer",
+    "title": "Full Stack Developer",
+    "description": "Works across both frontend and backend layers to ship complete features independently.",
+    "core_skills": ["JavaScript", "React", "Node.js", "SQL", "MongoDB", "REST API", "Git", "System Design"],
+    "growth_outlook": "High",
+    "salary_range": "Varies by experience and location"
+  },
+  {
+    "id": "data_analyst",
+    "title": "Data Analyst",
+    "description": "Turns raw data into actionable business insights using queries, dashboards, and statistics.",
+    "core_skills": ["SQL", "Python", "Excel", "Power BI", "Tableau", "Data Visualization", "Statistics", "Pandas"],
+    "growth_outlook": "Medium",
+    "salary_range": "Varies by experience and location"
+  },
+  {
+    "id": "data_scientist",
+    "title": "Data Scientist",
+    "description": "Applies statistics and machine learning to extract predictive insight from data.",
+    "core_skills": ["Python", "Machine Learning", "Statistics", "Pandas", "NumPy", "SQL", "Data Visualization"],
+    "growth_outlook": "High",
+    "salary_range": "Varies by experience and location"
+  },
+  {
+    "id": "devops_engineer",
+    "title": "DevOps Engineer",
+    "description": "Automates deployment pipelines and manages cloud infrastructure for reliability at scale.",
+    "core_skills": ["Docker", "Kubernetes", "AWS", "CI/CD", "Git", "System Design", "Microservices"],
+    "growth_outlook": "High",
+    "salary_range": "Varies by experience and location"
+  },
+  {
+    "id": "ml_engineer",
+    "title": "Machine Learning Engineer",
+    "description": "Builds and deploys production machine learning models and data pipelines.",
+    "core_skills": ["Python", "Machine Learning", "SQL", "Docker", "AWS", "System Design", "Statistics"],
+    "growth_outlook": "High",
+    "salary_range": "Varies by experience and location"
+  },
+  {
+    "id": "cloud_architect",
+    "title": "Cloud Architect",
+    "description": "Designs scalable, secure cloud infrastructure and guides cloud migration strategy.",
+    "core_skills": ["AWS", "Docker", "Kubernetes", "System Design", "CI/CD", "Microservices"],
+    "growth_outlook": "High",
+    "salary_range": "Varies by experience and location"
+  },
+  {
+    "id": "qa_engineer",
+    "title": "QA / Test Engineer",
+    "description": "Ensures software quality through manual and automated testing strategies.",
+    "core_skills": ["Testing", "Unit Testing", "Git", "SQL", "REST API", "Agile"],
+    "growth_outlook": "Medium",
+    "salary_range": "Varies by experience and location"
+  },
+  {
+    "id": "mobile_developer",
+    "title": "Mobile App Developer",
+    "description": "Builds native or cross-platform mobile applications for Android/iOS.",
+    "core_skills": ["Java", "REST API", "Git", "UI/UX", "Testing", "Agile"],
+    "growth_outlook": "Medium",
+    "salary_range": "Varies by experience and location"
+  },
+  {
+    "id": "cybersecurity_analyst",
+    "title": "Cybersecurity Analyst",
+    "description": "Protects systems and data by identifying vulnerabilities and monitoring threats.",
+    "core_skills": ["System Design", "Git", "SQL", "REST API", "Authentication", "AWS"],
+    "growth_outlook": "High",
+    "salary_range": "Varies by experience and location"
+  }
+]

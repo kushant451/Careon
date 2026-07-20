@@ -1,0 +1,6 @@
+COLLECTION_RESUMES        = "resumes"
+COLLECTION_INTERVIEWS     = "interviews"
+COLLECTION_HISTORY        = "history"
+COLLECTION_CAREER_RECS    = "career_recommendations"
+COLLECTION_ROADMAPS       = "roadmaps"
+COLLECTION_JOB_MATCHES    = "job_matches"
