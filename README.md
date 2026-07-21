@@ -4,6 +4,13 @@ Careon is a full-stack AI-powered career platform that guides job seekers throug
 
 Built as a **FastAPI** backend with a **React (Vite)** frontend.
 
+## Live Demo
+
+- **Frontend:** [careon-nine.vercel.app](https://careon-nine.vercel.app)
+- **Backend API:** [careon-73ct.onrender.com](https://careon-73ct.onrender.com)
+
+> Note: the backend is hosted on Render's free tier, which spins down when idle. The first request after inactivity may take 30–60 seconds to wake up.
+
 ```
 careon/
 ├── backend/     FastAPI REST API — resume parsing, ATS scoring, AI engine, MongoDB persistence
