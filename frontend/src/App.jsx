@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { AppProvider, useApp } from "./context/AppContext";
 import Sidebar from "./components/Sidebar";
@@ -17,6 +18,7 @@ import Dashboard from "./pages/Dashboard";
 
 function Shell() {
   const { ready } = useApp();
+  const [navOpen, setNavOpen] = useState(false);
 
   if (!ready) {
     return (
@@ -28,7 +30,17 @@ function Shell() {
 
   return (
     <div className="app-shell">
-      <Sidebar />
+      <header className="mobile-topbar">
+        <button className="mobile-menu-btn" onClick={() => setNavOpen(true)} aria-label="Open menu">
+          ☰
+        </button>
+        <div className="mobile-topbar-title">
+          <span className="mobile-topbar-logo">🤖</span> Careon
+        </div>
+      </header>
+
+      <Sidebar open={navOpen} onClose={() => setNavOpen(false)} />
+
       <main className="main">
         <Routes>
           <Route path="/" element={<Home />} />
