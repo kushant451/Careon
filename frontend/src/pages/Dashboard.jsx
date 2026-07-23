@@ -26,6 +26,9 @@ export default function Dashboard() {
       <Card style={{ textAlign: "center", padding: 32 }}>
         <div className="section-label" style={{ justifyContent: "center" }}>Placement Readiness</div>
         <Ring value={data.readiness} max={100} size={150} color={rColor} sub="%" />
+        <p style={{ fontSize: 12, color: "var(--muted)", marginTop: 8 }}>
+          Calculated as: 25% Resume (ATS) + 35% Mock Interview + 20% Career Fit + 20% Job Match
+        </p>
       </Card>
 
       <div className="row row-3">
