@@ -284,7 +284,7 @@ label.field-label { display: block; color: var(--muted); font-size: 13.5px; marg
 .upload-drop:hover { border-color: var(--accent); color: var(--text); }
 .upload-drop input { display: none; }
 
-@media (max-width: 860px) {
+@media (max-width: 640px) {
   .app-shell { flex-direction: column; }
   .sidebar { width: 100%; height: auto; position: relative; }
   .row-2 > *, .row-3 > *, .row-4 > * { flex-basis: 100%; }
