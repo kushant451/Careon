@@ -14,7 +14,7 @@
   --cyan: #06B6D4;
   --radius: 16px;
   --radius-sm: 8px;
-  --sidebar-w: 260px;
+  --sidebar-w: 290px;
 }
 
 * { box-sizing: border-box; }
@@ -142,8 +142,8 @@ a:hover { text-decoration: underline; }
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
+  gap: 12px;
+  padding: 11px 16px;
   border-radius: var(--radius-sm);
   color: #6B5248;
   font-weight: 500;
@@ -349,7 +349,9 @@ label.field-label { display: block; color: var(--muted); font-size: 13.5px; marg
 .upload-drop input { display: none; }
 
 @media (max-width: 860px) {
-  .mobile-topbar { display: flex; }
+  .app-shell { flex-direction: column; }
+
+  .mobile-topbar { display: flex; width: 100%; }
 
   .sidebar {
     position: fixed;
