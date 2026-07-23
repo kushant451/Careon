@@ -25,7 +25,11 @@ def _rule_based(answer, keywords):
     else:        improvements.append("Elaborate more — aim for at least 3–4 sentences")
     if matched:  strengths.append("Covered key concepts: " + ", ".join(matched[:3]))
     else:        improvements.append("Mention more specific technical terms")
-    if not strengths:    strengths.append("Attempted a relevant answer")
+    if not strengths:
+        if wc >= 5:
+            strengths.append("Attempted a relevant answer")
+        else:
+            improvements.append("Answer was too short to evaluate — please write a complete response")
     if not improvements: improvements.append("Add a real-world example to strengthen the answer")
     return {
         "score": score, "strengths": strengths, "improvements": improvements,

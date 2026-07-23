@@ -72,11 +72,15 @@ export default function Evaluation() {
       <div className="row row-2">
         <Card>
           <div className="section-label" style={{ color: "var(--green)" }}>💪 Strengths</div>
-          {(evaluation.strengths || []).map((s, i) => (
-            <div key={i} className="list-row">
-              <span style={{ color: "var(--green)" }}>✓</span> {s}
-            </div>
-          ))}
+          {(evaluation.strengths || []).length === 0 ? (
+            <div style={{ color: "var(--muted)", fontSize: 14.5 }}>No clear strengths identified in this answer.</div>
+          ) : (
+            (evaluation.strengths || []).map((s, i) => (
+              <div key={i} className="list-row">
+                <span style={{ color: "var(--green)" }}>✓</span> {s}
+              </div>
+            ))
+          )}
         </Card>
         <Card>
           <div className="section-label" style={{ color: "var(--yellow)" }}>📈 Areas to Improve</div>
