@@ -44,7 +44,7 @@ export default function Dashboard() {
           <div className="section-label">Mock Interview Avg</div>
           <div style={{ fontSize: 27, fontWeight: 700, color: "var(--text)" }}>{data.mock_avg}/10</div>
           <ProgressBar pct={(data.mock_avg / 10) * 100} />
-          {!data.mock_avg && (
+          {!data.mock_attempted && (
             <button className="btn" style={{ marginTop: 8 }} onClick={() => navigate("/questions")}>
               Start Interview →
             </button>

@@ -1,4 +1,3 @@
-
 import os
 import tempfile
 import time
@@ -515,6 +514,10 @@ def dashboard_get(x_session_id: str | None = Header(default=None)):
     resume = session["resume_data"]
     ats = resume.get("ats_score", 0) if resume else 0
     mock_avg = _avg_score(session)
+    mock_attempted = len([
+        v for v in session["evaluations"].values()
+        if isinstance(v, dict) and "score" in v
+    ])
     career = session["career_recommendations"]
     roadmap = session["roadmap_data"]
     jobmatch = session["job_match_result"]
@@ -529,6 +532,7 @@ def dashboard_get(x_session_id: str | None = Header(default=None)):
         "readiness": readiness,
         "ats_score": ats,
         "mock_avg": mock_avg,
+        "mock_attempted": mock_attempted,
         "top_career": {"title": top_path["title"], "match_percent": top_pct} if top_path else None,
         "job_match_percent": jm_pct if jobmatch else None,
         "roadmap_summary": (
