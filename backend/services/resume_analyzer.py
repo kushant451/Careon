@@ -15,7 +15,14 @@ def extract_project_names(text):
     for line in lines:
         s = line.strip()
         if re.search(r"\b(projects?)\b", s, re.IGNORECASE):
-            in_proj = True; continue
+            in_proj = True
+            after = re.split(r"\b(?:projects?)\b\s*:?", s, maxsplit=1, flags=re.IGNORECASE)[-1].strip()
+            if len(after) > 5:
+                for part in after.split(","):
+                    part = part.strip()
+                    if len(part) > 5:
+                        projects.append(part.split("|")[0].split("–")[0].strip())
+            continue
         if in_proj and s:
             if re.search(r"\b(education|experience|skills|summary|contact)\b", s, re.IGNORECASE):
                 break
