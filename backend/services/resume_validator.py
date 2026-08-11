@@ -162,7 +162,7 @@ OFF_TOPIC_KEYWORDS = [
     "bibliography",
     "isbn",
 
-    # Financial / business
+
     "invoice",
     "invoice number",
     "purchase order",
@@ -176,7 +176,7 @@ OFF_TOPIC_KEYWORDS = [
     "transaction id",
     "order id",
 
-    # Travel
+
     "pnr",
     "irctc",
     "boarding pass",
@@ -193,7 +193,7 @@ OFF_TOPIC_KEYWORDS = [
     "departure",
     "arrival",
 
-    # Certificates
+
     "certificate of completion",
     "certificate of participation",
     "certificate of achievement",
@@ -209,7 +209,7 @@ OFF_TOPIC_KEYWORDS = [
     "issued to",
     "certificate number",
 
-    # Offer / appointment documents
+
     "offer letter",
     "internship offer letter",
     "appointment letter",
@@ -218,7 +218,6 @@ OFF_TOPIC_KEYWORDS = [
     "terms and conditions",
     "acceptance of offer",
 
-    # Attendance / institutional records
     "attendance sheet",
     "attendance record",
     "student list",
@@ -229,7 +228,7 @@ OFF_TOPIC_KEYWORDS = [
     "candidate list",
     "participant list",
 
-    # Other unrelated documents
+
     "recipe",
     "ingredients",
     "screenplay",
@@ -285,7 +284,6 @@ MAX_DISTINCT_PHONES = 2
 
 MIN_SECTIONS = 3
 
-# Minimum score required for a document to be accepted.
 MIN_RESUME_SCORE = 8
 
 def _normalize(text: str) -> str:
