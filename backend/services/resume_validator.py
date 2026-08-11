@@ -31,7 +31,14 @@ OFF_TOPIC_KEYWORDS = [
 
 EMAIL_RE = re.compile(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+")
 PHONE_RE = re.compile(r"(\+?\d{1,3}[\s-]?)?\(?\d{3,4}\)?[\s-]?\d{3}[\s-]?\d{3,4}")
-MIN_WORD_COUNT = 60         
+MIN_WORD_COUNT = 60
+
+# A resume belongs to ONE person. If a document contains many distinct email
+# addresses or phone numbers, it's almost certainly a roster, attendance
+# sheet, allocation list, or similar bulk/institutional document — not a
+# personal resume — even if it happens to mention resume-like keywords.
+MAX_DISTINCT_EMAILS = 2
+MAX_DISTINCT_PHONES = 3
 
 
 def is_valid_resume(text: str):
@@ -49,6 +56,16 @@ def is_valid_resume(text: str):
         return False, "This file looks too short to be a resume. Please upload a complete resume."
 
     lower = cleaned.lower()
+
+    distinct_emails = {m.lower() for m in EMAIL_RE.findall(cleaned)}
+    distinct_phones = {re.sub(r"[\s()-]", "", m) for m in PHONE_RE.findall(cleaned) if m.strip()}
+
+    if len(distinct_emails) > MAX_DISTINCT_EMAILS or len(distinct_phones) > MAX_DISTINCT_PHONES:
+        return False, (
+            "This document appears to contain records for multiple people "
+            "(e.g. a roster, attendance sheet, or allocation list), not a single resume. "
+            "Please upload your own individual resume (PDF or DOCX)."
+        )
 
     off_topic_hits = sum(1 for kw in OFF_TOPIC_KEYWORDS if kw in lower)
     digit_ratio = sum(c.isdigit() for c in cleaned) / max(1, len(cleaned))
