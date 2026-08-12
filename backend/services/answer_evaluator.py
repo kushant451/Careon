@@ -1,20 +1,3 @@
-from ai_engine import llm_client, prompt_templates
-from config.llm_config import LLM_TEMPERATURE_EVAL
-from utils.helpers import safe_json_loads
-from utils.logger import get_logger
-
-logger = get_logger(__name__)
-
-def evaluate(question, answer, role, keywords=None):
-    prompt   = prompt_templates.answer_evaluation_prompt(role, question, answer)
-    ai_reply = llm_client.chat(prompt, temperature=LLM_TEMPERATURE_EVAL)
-    if ai_reply:
-        parsed = safe_json_loads(ai_reply)
-        if isinstance(parsed, dict) and "score" in parsed:
-            parsed["score"] = max(0, min(10, int(parsed["score"])))
-            return parsed
-    return _rule_based(answer, keywords or [])
-
 def _rule_based(answer, keywords):
     words   = answer.strip().split()
     wc      = len(words)
@@ -31,9 +14,16 @@ def _rule_based(answer, keywords):
         else:
             improvements.append("Answer was too short to evaluate — please write a complete response")
     if not improvements: improvements.append("Add a real-world example to strengthen the answer")
-    return {
-        "score": score, "strengths": strengths, "improvements": improvements,
-        "feedback": ("Your answer covers the basics. "
+
+    if wc < 5:
+        feedback = "Your answer was too short to evaluate meaningfully. Please write a complete response with a real explanation, not just a few words."
+    elif score <= 3:
+        feedback = ("Your answer is missing the core explanation. "
+                     + ("Include more specific terms. " if not matched else "")
+                     + "Structure: brief explanation → example → takeaway.")
+    else:
+        feedback = ("Your answer covers the basics. "
                      + ("Good use of relevant terminology. " if matched else "Include more specific terms. ")
                      + "Structure: brief explanation → example → takeaway.")
-    }
+
+    return {"score": score, "strengths": strengths, "improvements": improvements, "feedback": feedback}
